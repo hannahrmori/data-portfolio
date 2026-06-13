@@ -1,64 +1,656 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Analytics Portfolio</title>
-    <style>
-        :root { --primary: #1e293b; --accent: #2563eb; --bg: #f8fafc; --card: #ffffff; --text: #334155; }
-        body { font-family: -apple-system, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; }
-        header { background-color: var(--primary); color: white; padding: 40px 20px; text-align: center; }
-        nav { display: flex; justify-content: center; gap: 20px; background: #0f172a; padding: 12px; position: sticky; top: 0; z-index: 100; }
-        nav a { color: #94a3b8; text-decoration: none; font-weight: 500; }
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        .project-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 12px; padding: 30px; margin-bottom: 50px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .project-tag { display: inline-block; background: #eff6ff; color: var(--accent); padding: 4px 12px; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 12px; }
-        .project-tag.powerbi { background: #fffbeb; color: #b45309; }
-        .dashboard-frame-container { width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; margin-bottom: 20px; }
-        iframe, .preview-img { width: 100%; height: 500px; border: none; display: block; object-fit: contain; }
-        .btn-download { display: inline-block; background-color: var(--primary); color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hannah Moriones — Data Analytics Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --bg:        #0D1117;
+      --bg-card:   #161B22;
+      --bg-hover:  #1C2330;
+      --border:    #21262D;
+      --amber:     #F0A500;
+      --amber-dim: #8A5E00;
+      --text:      #E6EDF3;
+      --muted:     #7D8590;
+      --label:     #F0A500;
+      --radius:    10px;
+      --mono:      'Space Mono', monospace;
+      --sans:      'Space Grotesk', sans-serif;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── LAYOUT ─────────────────────────────────────────────── */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      border-bottom: 1px solid var(--border);
+      background: rgba(13,17,23,0.88);
+      backdrop-filter: blur(12px);
+    }
+    nav .wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 14px; padding-bottom: 14px;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--amber);
+      letter-spacing: 0.03em;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      font-family: var(--mono);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero { padding: 100px 0 80px; }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--amber);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amber);
+    }
+    .cursor {
+      display: inline-block;
+      width: 3px; height: 0.85em;
+      background: var(--amber);
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 1.1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip {
+      font-family: var(--mono);
+      font-size: 11px;
+      border: 1px solid var(--amber-dim);
+      color: var(--amber);
+      padding: 5px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── PULSE DIVIDER ──────────────────────────────────────── */
+    .pulse-divider {
+      display: flex; align-items: center; gap: 14px;
+      margin: 64px 0 48px;
+    }
+    .pulse-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--amber) 0%, transparent 100%);
+    }
+    .pulse-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--amber);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .pulse-line-r {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--amber) 100%);
+    }
+
+    /* ─── SECTION TITLE ──────────────────────────────────────── */
+    .section-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--amber);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 36px;
+      max-width: 560px;
+    }
+
+    /* ─── PROJECT CARDS ──────────────────────────────────────── */
+    .projects { display: flex; flex-direction: column; gap: 28px; }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .project-card:hover {
+      border-color: var(--amber-dim);
+      transform: translateY(-2px);
+    }
+
+    /* Two-column layout: image left, content right */
+    .card-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 300px;
+    }
+    .card-inner.reverse { direction: rtl; }
+    .card-inner.reverse > * { direction: ltr; }
+
+    .card-img {
+      background: var(--bg);
+      overflow: hidden;
+      position: relative;
+    }
+    .card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      filter: brightness(0.9);
+    }
+    .project-card:hover .card-img img { transform: scale(1.03); filter: brightness(1); }
+
+    /* Fallback placeholder if image missing */
+    .card-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-hover);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .card-content {
+      padding: 36px 36px 36px 36px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+
+    .card-top {}
+    .card-platform {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .platform-tableau { color: #0076A8; }
+    .platform-looker  { color: #4285F4; }
+    .platform-powerbi { color: #F2C811; }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 28px; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: rgba(240,165,0,0.08);
+      border: 1px solid rgba(240,165,0,0.2);
+      color: var(--amber);
+      letter-spacing: 0.04em;
+    }
+
+    .card-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 9px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      letter-spacing: 0.03em;
+    }
+    .btn-primary {
+      background: var(--amber);
+      color: #0D1117;
+      font-weight: 700;
+    }
+    .btn-primary:hover { background: #ffc72c; }
+    .btn-outline {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+    }
+    .btn-outline:hover { border-color: var(--amber-dim); color: var(--text); }
+
+    .btn svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+
+    /* ─── ABOUT STRIP ────────────────────────────────────────── */
+    .about-strip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px;
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .about-text h2 {
+      font-size: 1.4rem; font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+    .about-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .stat-item {}
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--amber);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      margin-top: 100px;
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+    footer .wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-left {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .footer-left span { color: var(--amber); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--amber); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .card-inner { grid-template-columns: 1fr; }
+      .card-inner.reverse { direction: ltr; }
+      .card-img { min-height: 200px; }
+      .card-content { padding: 24px; }
+      .about-strip { grid-template-columns: 1fr; padding: 28px; }
+      .nav-links { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cursor { animation: none; opacity: 1; }
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
 </head>
+
 <body>
 
-    <header><h1>Data Analytics Portfolio</h1></header>
-
-    <nav>
-        <a href="#looker">Looker</a>
-        <a href="#tableau">Tableau</a>
-        <a href="#powerbi">Power BI</a>
-    </nav>
-
-    <div class="container">
-
-        <div class="project-card" id="looker">
-            <span class="project-tag">Looker Studio</span>
-            <h2>Marketing Campaign ROI</h2>
-            <div class="dashboard-frame-container">
-                <iframe src="https://lookerstudio.google.com/embed/reporting/403029a0-89f9-4d26-aa3c-7df836fbb089/page/XK2zF" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <div class="project-card" id="tableau">
-            <span class="project-tag">Tableau</span>
-            <h2>Global Logistics & Supply Chain</h2>
-            <div class="dashboard-frame-container">
-                <iframe src="https://public.tableau.com/views/EnterpriseWorkforceRiskAudit/WorkforceRiskAudit?:embed=true"></iframe>
-            </div>
-        </div>
-
-        <div class="project-card" id="powerbi">
-            <span class="project-tag powerbi">Power BI</span>
-            <h2>Global ESG Insights Hub</h2>
-            <div class="dashboard-frame-container">
-                <img class="preview-img" src="assets/Tab%202_The%20Interactive%20Wealth%20vs.%20Emissions%20Tracker.PNG">
-            </div>
-            <div class="dashboard-frame-container">
-                <img class="preview-img" src="assets/Tab1_Macro%20Executive%20View.PNG">
-            </div>
-            <a href="assets/Global%20ESG%20Insights%20Hub_Regional%20Acceleration%20Model.pbix" download class="btn-download">📥 Download .PBIX File</a>
-        </div>
-
+  <!-- NAV -->
+  <nav>
+    <div class="wrap">
+      <div class="nav-logo">hannah.moriones</div>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="https://www.linkedin.com/in/hannahrmori" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
     </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero-eyebrow">// Data Analytics Portfolio</p>
+      <h1>
+        Turning raw data<br />into <em>clear decisions</em><span class="cursor"></span>
+      </h1>
+      <p class="hero-desc">
+        Data analyst specialising in workforce analytics, global development,
+        and business intelligence. Building dashboards that don't just look good —
+        they answer the right questions.
+      </p>
+      <div class="hero-chips">
+        <span class="chip">Tableau</span>
+        <span class="chip">Power BI</span>
+        <span class="chip">Looker Studio</span>
+        <span class="chip">SQL</span>
+        <span class="chip">Python</span>
+        <span class="chip">World Bank Data</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULSE DIVIDER -->
+  <div class="wrap">
+    <div class="pulse-divider">
+      <div class="pulse-line"></div>
+      <span class="pulse-label">Featured Projects</span>
+      <div class="pulse-line-r"></div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="projects">
+
+        <!-- PROJECT 1 — TABLEAU -->
+        <article class="project-card">
+          <div class="card-inner">
+            <div class="card-img">
+              <img
+                src="assets/Tab1_Macro Executive View.PNG"
+                alt="Enterprise Workforce Risk Audit — Macro Executive View dashboard screenshot"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="card-img-placeholder" style="display:none; position:absolute; inset:0;">Dashboard Preview</div>
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <p class="card-platform platform-tableau">// Tableau Public</p>
+                <h2 class="card-title">Enterprise Workforce Risk Audit</h2>
+                <p class="card-desc">
+                  An executive-level HR intelligence dashboard surfacing attrition risk,
+                  headcount distribution, and department-level workforce health metrics
+                  across the enterprise. Built for C-suite decision-making with drill-down
+                  filters and cross-sheet interactivity.
+                </p>
+                <div class="card-tags">
+                  <span class="tag">HR Analytics</span>
+                  <span class="tag">Attrition Risk</span>
+                  <span class="tag">Executive KPIs</span>
+                  <span class="tag">LOD Calculations</span>
+                  <span class="tag">Dashboard Actions</span>
+                </div>
+              </div>
+              <div class="card-links">
+                <a
+                  class="btn btn-primary"
+                  href="https://public.tableau.com/views/EnterpriseWorkforceRiskAudit/WorkforceRiskAudit"
+                  target="_blank" rel="noopener"
+                >
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.54 10.46-1.06 1.06-3-3V12H6V8.52l-3-3 1.06-1.06L7 7.4V4h1.5v3.4z"/></svg>
+                  View on Tableau Public
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 2 — TABLEAU (second screenshot) -->
+        <article class="project-card">
+          <div class="card-inner reverse">
+            <div class="card-img">
+              <img
+                src="assets/Tab 2_The Interactive Wealth vs. Emissions Tracker.PNG"
+                alt="Interactive Wealth vs Emissions Tracker — Tableau dashboard screenshot"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="card-img-placeholder" style="display:none; position:absolute; inset:0;">Dashboard Preview</div>
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <p class="card-platform platform-tableau">// Tableau Public</p>
+                <h2 class="card-title">The Interactive Wealth vs. Emissions Tracker</h2>
+                <p class="card-desc">
+                  A dynamic scatter-plot explorer mapping GDP per capita against CO₂
+                  emissions across 200+ countries from 2000–2023. Reveals how economic
+                  growth and carbon output have decoupled in some regions while deepening
+                  in others — powered by World Bank open data.
+                </p>
+                <div class="card-tags">
+                  <span class="tag">World Bank Data</span>
+                  <span class="tag">Scatter Plot</span>
+                  <span class="tag">Geo Mapping</span>
+                  <span class="tag">Time Series</span>
+                  <span class="tag">Sustainability</span>
+                </div>
+              </div>
+              <div class="card-links">
+                <a
+                  class="btn btn-primary"
+                  href="https://public.tableau.com/views/EnterpriseWorkforceRiskAudit/WorkforceRiskAudit"
+                  target="_blank" rel="noopener"
+                >
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.54 10.46-1.06 1.06-3-3V12H6V8.52l-3-3 1.06-1.06L7 7.4V4h1.5v3.4z"/></svg>
+                  View on Tableau Public
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 3 — LOOKER STUDIO -->
+        <article class="project-card">
+          <div class="card-inner">
+            <div class="card-img" style="background:#0D1117; display:flex; align-items:stretch;">
+              <iframe
+                src="https://lookerstudio.google.com/embed/reporting/403029a0-89f9-4d26-aa3c-7df836fbb089/page/XK2zF"
+                style="width:100%; height:100%; min-height:320px; border:none; pointer-events:none;"
+                allowfullscreen
+                title="Looker Studio dashboard preview"
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <p class="card-platform platform-looker">// Looker Studio</p>
+                <h2 class="card-title">Global Development Analytics</h2>
+                <p class="card-desc">
+                  A live-connected Looker Studio report built on World Bank indicators,
+                  tracking economic and health trends across income groups. Features
+                  real-time filter controls, scorecards, and geographic breakdowns —
+                  shareable via public link with no login required.
+                </p>
+                <div class="card-tags">
+                  <span class="tag">Looker Studio</span>
+                  <span class="tag">Live Data</span>
+                  <span class="tag">Scorecards</span>
+                  <span class="tag">Geo Charts</span>
+                  <span class="tag">Date Controls</span>
+                </div>
+              </div>
+              <div class="card-links">
+                <a
+                  class="btn btn-primary"
+                  href="https://lookerstudio.google.com/embed/reporting/403029a0-89f9-4d26-aa3c-7df836fbb089/page/XK2zF"
+                  target="_blank" rel="noopener"
+                >
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.54 10.46-1.06 1.06-3-3V12H6V8.52l-3-3 1.06-1.06L7 7.4V4h1.5v3.4z"/></svg>
+                  Open Looker Report
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 4 — POWER BI -->
+        <article class="project-card">
+          <div class="card-inner reverse">
+            <div class="card-img" style="display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #1C2330 0%, #0D1117 100%);">
+              <div style="text-align:center; padding:32px;">
+                <svg width="64" height="64" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto 16px;" aria-hidden="true">
+                  <rect width="40" height="40" rx="8" fill="#F2C811" opacity="0.15"/>
+                  <rect x="8" y="20" width="5" height="14" rx="1.5" fill="#F2C811"/>
+                  <rect x="16" y="14" width="5" height="20" rx="1.5" fill="#F2C811" opacity="0.75"/>
+                  <rect x="24" y="8" width="5" height="26" rx="1.5" fill="#F2C811" opacity="0.5"/>
+                </svg>
+                <p style="font-family:'Space Mono',monospace; font-size:11px; color:#7D8590; letter-spacing:0.08em; text-transform:uppercase;">Power BI Report</p>
+                <p style="font-family:'Space Mono',monospace; font-size:10px; color:#3A4251; margin-top:6px; letter-spacing:0.05em;">Access via link →</p>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <p class="card-platform platform-powerbi">// Power BI</p>
+                <h2 class="card-title">Business Intelligence Dashboard</h2>
+                <p class="card-desc">
+                  A Power BI report demonstrating data modelling with a star schema,
+                  custom DAX measures including YoY comparisons and running totals,
+                  and interactive slicers across dimensions. Saved and shared via Google Drive.
+                </p>
+                <div class="card-tags">
+                  <span class="tag">Power BI</span>
+                  <span class="tag">DAX Measures</span>
+                  <span class="tag">Data Modelling</span>
+                  <span class="tag">Star Schema</span>
+                  <span class="tag">KPI Cards</span>
+                </div>
+              </div>
+              <div class="card-links">
+                <a
+                  class="btn btn-primary"
+                  href="https://drive.google.com/file/d/1METpiq35MvVsIS1r6bs1GbVL3vnoba7d/view?usp=sharing"
+                  target="_blank" rel="noopener"
+                >
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.54 10.46-1.06 1.06-3-3V12H6V8.52l-3-3 1.06-1.06L7 7.4V4h1.5v3.4z"/></svg>
+                  View on Google Drive
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /projects -->
+    </div>
+  </section>
+
+  <!-- PULSE DIVIDER -->
+  <div class="wrap">
+    <div class="pulse-divider" id="about">
+      <div class="pulse-line"></div>
+      <span class="pulse-label">About</span>
+      <div class="pulse-line-r"></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section>
+    <div class="wrap">
+      <div class="about-strip">
+        <div class="about-text">
+          <h2>Hi, I'm Hannah.</h2>
+          <p>
+            I'm a data analyst passionate about turning complex datasets into clear,
+            actionable insights. I work across the full analytics stack — from data
+            cleaning and modelling to interactive dashboard design — using Tableau,
+            Power BI, and Looker Studio.
+          </p>
+          <br />
+          <p>
+            My work spans HR analytics, global development data, and business
+            intelligence. I believe great analysis isn't just about the numbers —
+            it's about asking the right question first.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-num">3</div>
+            <div class="stat-label">BI Platforms</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4+</div>
+            <div class="stat-label">Live Dashboards</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">217</div>
+            <div class="stat-label">Countries Analysed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">50+</div>
+            <div class="stat-label">Years of Data</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <p class="footer-left">
+        Built by <span>Hannah Moriones</span> · Data Analytics Portfolio
+      </p>
+      <div class="footer-links">
+        <a href="https://public.tableau.com/app/profile/hannah.ruth.moriones2495" target="_blank" rel="noopener">Tableau Public ↗</a>
+        <a href="https://www.linkedin.com/in/hannahrmori" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/hannahrmori" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
