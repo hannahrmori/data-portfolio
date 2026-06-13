@@ -1,102 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Analytics Portfolio</title>
-    <style>
-        /* Modern, minimal styling for data professional portfolios */
-        :root {
-            --primary: #1e293b;
-            --accent: #2563eb;
-            --pbi-yellow: #f2c811; /* Custom brand color for Power BI card button */
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text: #334155;
-        }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 0; line-height: 1.6; }
-        header { background-color: var(--primary); color: white; padding: 40px 20px; text-align: center; }
-        header h1 { margin: 0; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.05em; }
-        header p { margin: 10px 0 0; opacity: 0.9; font-size: 1.1rem; }
-        nav { display: flex; justify-content: center; gap: 20px; background: #0f172a; padding: 12px; position: sticky; top: 0; z-index: 100; }
-        nav a { color: #94a3b8; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
-        nav a:hover { color: white; }
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        .project-card { background: var(--card); border: 1px solid #e2e8f0; border-radius: 12px; padding: 30px; margin-bottom: 50px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .project-tag { display: inline-block; background: #eff6ff; color: var(--accent); padding: 4px 12px; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 12px; }
-        .project-tag.powerbi { background: #fffbeb; color: #b45309; } /* Tailored tag color for Power BI */
-        h2 { margin: 0 0 10px 0; font-size: 1.75rem; color: var(--primary); letter-spacing: -0.03em; }
-        .meta-info { font-size: 0.9rem; color: #64748b; margin-bottom: 20px; }
-        .meta-info strong { color: #475569; }
-        .dashboard-frame-container { width: 100%; position: relative; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; background: #f1f5f9; }
-        iframe, .preview-img { width: 100%; height: 650px; border: none; display: block; object-fit: cover; }
-        
-        /* Premium Download Button Styling */
-        .download-container { margin-top: 25px; text-align: center; }
-        .btn-download { display: inline-flex; align-items: center; background-color: var(--primary); color: white; padding: 12px 24px; font-weight: 600; font-size: 0.95rem; text-decoration: none; border-radius: 8px; transition: background-color 0.2s, transform 0.1s; border: 1px solid #334155; }
-        .btn-download:hover { background-color: #0f172a; transform: translateY(-1px); }
-        .btn-download:active { transform: translateY(0); }
-        .btn-download span { margin-right: 8px; font-size: 1.1rem; }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>Data Analytics Portfolio</h1>
-        <p>Interactive Business Intelligence Solutions & Executive Dashboards</p>
-    </header>
-
-    <nav>
-        <a href="#looker">Looker Studio Project</a>
-        <a href="#tableau">Tableau Project</a>
-        <a href="#powerbi">Power BI Project</a>
-    </nav>
-
-    <div class="container">
-
-        <div class="project-card" id="looker">
-            <span class="project-tag">Looker Studio</span>
-            <h2>Marketing Campaign ROI & Acquisition Dashboard</h2>
-            <div class="meta-info"><strong>Tools:</strong> Google Looker Studio, Google BigQuery, SQL</div>
-            <p>A web traffic and digital marketing performance dashboard aggregating continuous multi-channel advertising spends. Provides real-time cross-platform metrics analysis for performance marketing scale evaluation.</p>
-            <div class="dashboard-frame-container">
-                <iframe title="Looker Studio Dashboard" src="https://lookerstudio.google.com/embed/reporting/403029a0-89f9-4d26-aa3c-7df836fbb089/page/XK2zF" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <div class="project-card" id="tableau">
-            <span class="project-tag">Tableau</span>
-            <h2>Global Logistics & Supply Chain Optimization</h2>
-            <div class="meta-info"><strong>Tools:</strong> Tableau Public, Excel, Data Storytelling</div>
-            <p>An exploratory data visualization targeting inventory turnover rates and transit exceptions. Built with advanced LEVEL OF DETAIL (LOD) expressions and an emphasis on cognitive-load reduction layout styling.</p>
-            <div class="dashboard-frame-container">
-                <iframe title="Tableau Dashboard" src="https://public.tableau.com/views/EnterpriseWorkforceRiskAudit/WorkforceRiskAudit?:showVizHome=no&:embed=true"></iframe>
-            </div>
-        </div>
-
-        <div class="project-card" id="powerbi">
-            <span class="project-tag powerbi">Power BI</span>
-            <h2>Global ESG Insights Hub & Regional Acceleration Model</h2>
-            <div class="meta-info"><strong>Tools:</strong> Power BI Desktop, Advanced Data Modeling, UX Optimization</div>
-            <p>An interactive data visualization application engineered to evaluate macroeconomic trends and track international environmental compliance metrics.</p>
-            <ul>
-                <li><strong>Temporal Velocity Mapping:</strong> Pioneered an animated scatter plot framework utilizing a synchronized play-axis engine to track the moving correlation between industrial output (GDP) and per-capita carbon output over a twenty-year horizon.</li>
-                <li><strong>Premium Dark-Mode UX:</strong> Formatted an executive-grade dashboard interface with a custom dark-slate aesthetic, featuring customized high-contrast typography and tailored grid layouts optimized to eliminate background visual noise.</li>
-                <li><strong>Granularity & Model Debugging:</strong> Systematically audited data schema relationships and aggregation parameters to resolve multi-table granularity conflicts, successfully eliminating rendering faults to ensure stable visual rendering across all data points.</li>
-            </ul>
-            
-            <div class="dashboard-frame-container">
-                <img class="preview-img" src="./assets/Tab1_Macro Executive View.PNG" alt="Global ESG Insights Hub Timeline Animation Preview">
-            </div>
-
-            <div class="download-container">
-                <a href="./assets/Global ESG Insights Hub_Regional Acceleration Model.pbix" download class="btn-download">
-                    <span>📥</span> Download Interactive .PBIX File
-                </a>
-            </div>
-        </div>
-
+<div class="project-card" id="powerbi">
+    <span class="project-tag powerbi">Power BI</span>
+    <h2>Global ESG Insights Hub & Regional Acceleration Model</h2>
+    <div class="meta-info"><strong>Tools:</strong> Power BI Desktop, Advanced Data Modeling, UX Optimization</div>
+    <p>An interactive data visualization application engineered to evaluate macroeconomic trends and track international environmental compliance metrics.</p>
+    <ul>
+        <li><strong>Temporal Velocity Mapping:</strong> Pioneered an animated scatter plot framework utilizing a synchronized play-axis engine to track the moving correlation between industrial output (GDP) and per-capita carbon output.</li>
+        <li><strong>Premium Dark-Mode UX:</strong> Formatted an executive-grade dashboard interface with a custom dark-slate aesthetic, featuring high-contrast typography and tailored grid layouts.</li>
+        <li><strong>Granularity & Model Debugging:</strong> Systematically audited data schema relationships to resolve multi-table granularity conflicts, ensuring stable visual rendering across all data points.</li>
+    </ul>
+    
+    <div class="dashboard-frame-container" style="margin-bottom: 20px;">
+        <img class="preview-img" src="Tab 2_The Interactive Wealth vs. Emissions Tracker.PNG" alt="Interactive Tracker Preview">
+    </div>
+    <div class="dashboard-frame-container">
+        <img class="preview-img" src="Tab1_Macro Executive View.PNG" alt="Executive View Preview">
     </div>
 
-</body>
-</html>
+    <div class="download-container">
+        <a href="Global ESG Insights Hub_Regional Acceleration Model.pbix" download class="btn-download">
+            <span>📥</span> Download Interactive .PBIX File
+        </a>
+    </div>
+</div>
