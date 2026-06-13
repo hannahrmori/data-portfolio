@@ -3,654 +3,912 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hannah Moriones — Data Analytics Portfolio</title>
+  <title>Hannah Ruth Moriones — BI & Data Analytics Leader</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* ─── TOKENS ─────────────────────────────────────────────── */
+    /* ── DESIGN TOKENS ───────────────────────────────────────── */
     :root {
-      --bg:        #0D1117;
-      --bg-card:   #161B22;
-      --bg-hover:  #1C2330;
-      --border:    #21262D;
-      --amber:     #F0A500;
-      --amber-dim: #8A5E00;
-      --text:      #E6EDF3;
-      --muted:     #7D8590;
-      --label:     #F0A500;
-      --radius:    10px;
-      --mono:      'Space Mono', monospace;
-      --sans:      'Space Grotesk', sans-serif;
+      --bg:          #0B0F19;
+      --bg-card:     #111827;
+      --bg-raised:   #1A2234;
+      --border:      #1F2D45;
+      --border-light:#263450;
+      --blue:        #4F7EF7;
+      --blue-dim:    #1E3A6E;
+      --blue-glow:   rgba(79,126,247,0.12);
+      --text:        #E8EDF5;
+      --muted:       #6B7A99;
+      --subtle:      #374461;
+      --white:       #FFFFFF;
+      --radius-sm:   6px;
+      --radius-md:   10px;
+      --radius-lg:   14px;
+      --serif:       'Playfair Display', Georgia, serif;
+      --sans:        'Inter', system-ui, sans-serif;
+      --mono:        'JetBrains Mono', monospace;
+      --max:         1080px;
     }
 
-    /* ─── RESET ──────────────────────────────────────────────── */
+    /* ── RESET ───────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
+    ul { list-style: none; }
 
-    /* ─── LAYOUT ─────────────────────────────────────────────── */
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    /* ── LAYOUT ──────────────────────────────────────────────── */
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
 
-    /* ─── NAV ────────────────────────────────────────────────── */
+    /* ── NAV ─────────────────────────────────────────────────── */
     nav {
-      position: sticky; top: 0; z-index: 50;
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11,15,25,0.92);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      background: rgba(13,17,23,0.88);
-      backdrop-filter: blur(12px);
     }
-    nav .wrap {
+    .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      padding-top: 14px; padding-bottom: 14px;
+      height: 60px;
     }
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 14px;
-      color: var(--amber);
-      letter-spacing: 0.03em;
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--white);
+      letter-spacing: 0.01em;
     }
-    .nav-links { display: flex; gap: 28px; }
+    .nav-name span { color: var(--blue); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
     .nav-links a {
-      font-size: 13px;
+      font-size: 13px; font-weight: 500;
       color: var(--muted);
-      font-family: var(--mono);
+      letter-spacing: 0.02em;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
-
-    /* ─── HERO ───────────────────────────────────────────────── */
-    .hero { padding: 100px 0 80px; }
-    .hero-eyebrow {
+    .nav-cta {
+      font-size: 12px; font-weight: 600;
       font-family: var(--mono);
-      font-size: 12px;
-      color: var(--amber);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
+      color: var(--blue) !important;
+      border: 1px solid var(--blue-dim);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      transition: background 0.2s, color 0.2s !important;
     }
-    .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
+    .nav-cta:hover { background: var(--blue-glow) !important; color: var(--blue) !important; }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .hero { padding: 88px 0 72px; }
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 11px; font-weight: 500;
+      color: var(--blue);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5.5vw, 4rem);
       font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      max-width: 760px;
-      margin-bottom: 24px;
-    }
-    .hero h1 em {
-      font-style: normal;
-      color: var(--amber);
-    }
-    .cursor {
-      display: inline-block;
-      width: 3px; height: 0.85em;
-      background: var(--amber);
-      margin-left: 4px;
-      vertical-align: middle;
-      animation: blink 1.1s step-end infinite;
-    }
-    @keyframes blink { 50% { opacity: 0; } }
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 560px;
-      margin-bottom: 36px;
-      line-height: 1.7;
-    }
-    .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; }
-    .chip {
-      font-family: var(--mono);
-      font-size: 11px;
-      border: 1px solid var(--amber-dim);
-      color: var(--amber);
-      padding: 5px 12px;
-      border-radius: 20px;
-      letter-spacing: 0.04em;
-    }
-
-    /* ─── PULSE DIVIDER ──────────────────────────────────────── */
-    .pulse-divider {
-      display: flex; align-items: center; gap: 14px;
-      margin: 64px 0 48px;
-    }
-    .pulse-line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--amber) 0%, transparent 100%);
-    }
-    .pulse-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--amber);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .pulse-line-r {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent 0%, var(--amber) 100%);
-    }
-
-    /* ─── SECTION TITLE ──────────────────────────────────────── */
-    .section-eyebrow {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--amber);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .section-title {
-      font-size: 1.6rem;
-      font-weight: 600;
+      line-height: 1.1;
       letter-spacing: -0.01em;
-      margin-bottom: 6px;
+      color: var(--white);
+      margin-bottom: 10px;
     }
-    .section-sub {
-      font-size: 0.9rem;
+    .hero-title {
+      font-size: 1rem; font-weight: 400;
       color: var(--muted);
-      margin-bottom: 36px;
-      max-width: 560px;
+      letter-spacing: 0.01em;
+      margin-bottom: 28px;
     }
-
-    /* ─── PROJECT CARDS ──────────────────────────────────────── */
-    .projects { display: flex; flex-direction: column; gap: 28px; }
-
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: border-color 0.25s, transform 0.25s;
+    .hero-summary {
+      font-size: 1rem; font-weight: 300;
+      color: #9BACC8;
+      max-width: 620px;
+      line-height: 1.8;
+      margin-bottom: 40px;
     }
-    .project-card:hover {
-      border-color: var(--amber-dim);
-      transform: translateY(-2px);
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .btn-solid {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 13px; font-weight: 600;
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      transition: opacity 0.2s;
+      letter-spacing: 0.02em;
     }
+    .btn-solid:hover { opacity: 0.88; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border-light);
+      color: var(--muted);
+      font-size: 13px; font-weight: 500;
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s, color 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .btn-ghost:hover { border-color: var(--blue-dim); color: var(--text); }
 
-    /* Two-column layout: image left, content right */
-    .card-inner {
+    /* ── IMPACT METRICS BAR ──────────────────────────────────── */
+    /* Signature element: real numbers from the resume, displayed like a KPI strip */
+    .metrics-bar {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 300px;
-    }
-    .card-inner.reverse { direction: rtl; }
-    .card-inner.reverse > * { direction: ltr; }
-
-    .card-img {
-      background: var(--bg);
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
+      margin: 56px 0 0;
+      background: var(--bg-card);
+    }
+    .metric-item {
+      padding: 28px 24px;
+      border-right: 1px solid var(--border);
       position: relative;
     }
-    .card-img img {
+    .metric-item:last-child { border-right: none; }
+    .metric-num {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .metric-num span { color: var(--blue); font-size: 1.4rem; }
+    .metric-label {
+      font-size: 12px; font-weight: 500;
+      color: var(--muted);
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── SECTION STRUCTURE ───────────────────────────────────── */
+    .section { padding: 80px 0; }
+    .section + .section { border-top: 1px solid var(--border); }
+    .section-header { margin-bottom: 48px; }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 11px; font-weight: 500;
+      color: var(--blue);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: 1.9rem; font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      font-size: 0.9rem; font-weight: 300;
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    /* ── PROJECT CARDS ───────────────────────────────────────── */
+    .projects { display: flex; flex-direction: column; gap: 2px; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .project-row {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      min-height: 280px;
+      background: var(--bg-card);
+      transition: background 0.2s;
+    }
+    .project-row:hover { background: var(--bg-raised); }
+    .project-row + .project-row { border-top: 1px solid var(--border); }
+    .project-row.flip { direction: rtl; }
+    .project-row.flip > * { direction: ltr; }
+
+    .proj-media {
+      overflow: hidden;
+      position: relative;
+      background: var(--bg);
+    }
+    .proj-media img {
       width: 100%; height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
-      filter: brightness(0.9);
+      transition: transform 0.5s ease;
+      filter: brightness(0.85) saturate(0.9);
     }
-    .project-card:hover .card-img img { transform: scale(1.03); filter: brightness(1); }
-
-    /* Fallback placeholder if image missing */
-    .card-img-placeholder {
+    .project-row:hover .proj-media img { transform: scale(1.04); filter: brightness(1) saturate(1); }
+    .proj-media-placeholder {
       width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px;
+    }
+    .proj-media-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      background: var(--bg-hover);
-      color: var(--muted);
+    }
+    .proj-media-icon svg { width: 22px; height: 22px; }
+    .proj-media-label {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 10px; font-weight: 500;
+      color: var(--subtle);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
-    .card-content {
-      padding: 36px 36px 36px 36px;
+    .proj-content {
+      padding: 36px 40px;
       display: flex; flex-direction: column; justify-content: space-between;
     }
-
-    .card-top {}
-    .card-platform {
+    .proj-platform {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 10px; font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 14px;
     }
-    .platform-tableau { color: #0076A8; }
-    .platform-looker  { color: #4285F4; }
-    .platform-powerbi { color: #F2C811; }
+    .p-tableau { color: #0094C9; }
+    .p-looker  { color: #5C85E6; }
+    .p-powerbi { color: #E8B800; }
 
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
+    .proj-title {
+      font-family: var(--serif);
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
       margin-bottom: 12px;
-      line-height: 1.3;
     }
-    .card-desc {
-      font-size: 0.875rem;
+    .proj-desc {
+      font-size: 0.85rem; font-weight: 300;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.75;
       margin-bottom: 20px;
     }
-    .card-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 28px; }
+    .proj-highlights { margin-bottom: 24px; }
+    .proj-highlight {
+      font-size: 12px; font-weight: 400;
+      color: #7A93B8;
+      padding: 3px 0 3px 14px;
+      position: relative;
+      line-height: 1.6;
+    }
+    .proj-highlight::before {
+      content: '›';
+      position: absolute; left: 0;
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
     .tag {
       font-family: var(--mono);
-      font-size: 10px;
+      font-size: 10px; font-weight: 500;
+      color: var(--muted);
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
       padding: 3px 9px;
       border-radius: 4px;
-      background: rgba(240,165,0,0.08);
-      border: 1px solid rgba(240,165,0,0.2);
-      color: var(--amber);
-      letter-spacing: 0.04em;
-    }
-
-    .card-links { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-family: var(--mono);
-      font-size: 12px;
-      padding: 9px 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: none;
       letter-spacing: 0.03em;
     }
-    .btn-primary {
-      background: var(--amber);
-      color: #0D1117;
-      font-weight: 700;
+    .proj-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 12px; font-weight: 600;
+      color: var(--blue);
+      font-family: var(--mono);
+      letter-spacing: 0.03em;
+      transition: opacity 0.2s;
     }
-    .btn-primary:hover { background: #ffc72c; }
-    .btn-outline {
-      border: 1px solid var(--border);
-      background: transparent;
+    .proj-link:hover { opacity: 0.75; }
+    .proj-link svg { width: 12px; height: 12px; }
+
+    /* ── EXPERIENCE TIMELINE ─────────────────────────────────── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--blue) 0%, var(--border) 100%);
+    }
+    .tl-item { position: relative; padding-bottom: 44px; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -33px; top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid var(--blue-dim);
+      transition: border-color 0.2s;
+    }
+    .tl-item:first-child .tl-dot { border-color: var(--blue); background: var(--blue); }
+    .tl-meta {
+      font-family: var(--mono);
+      font-size: 11px; font-weight: 500;
+      color: var(--blue);
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .tl-role {
+      font-size: 1rem; font-weight: 600;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .tl-company {
+      font-size: 0.85rem; font-weight: 400;
       color: var(--muted);
+      margin-bottom: 12px;
     }
-    .btn-outline:hover { border-color: var(--amber-dim); color: var(--text); }
+    .tl-bullets { display: flex; flex-direction: column; gap: 6px; }
+    .tl-bullet {
+      font-size: 13px; font-weight: 300;
+      color: #7A93B8;
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.65;
+    }
+    .tl-bullet::before {
+      content: '›';
+      position: absolute; left: 0;
+      color: var(--subtle);
+      font-weight: 600;
+    }
+    .tl-bullet strong { color: var(--text); font-weight: 500; }
 
-    .btn svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
-
-    /* ─── ABOUT STRIP ────────────────────────────────────────── */
-    .about-strip {
+    /* ── SKILLS GRID ─────────────────────────────────────────── */
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .skill-group {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 48px;
-      margin-top: 28px;
+      border-radius: var(--radius-md);
+      padding: 24px 26px;
+    }
+    .skill-group-title {
+      font-family: var(--mono);
+      font-size: 10px; font-weight: 500;
+      color: var(--blue);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+    .skill-pill {
+      font-size: 12px; font-weight: 400;
+      color: var(--text);
+      background: var(--bg-raised);
+      border: 1px solid var(--border-light);
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── CERTIFICATIONS ──────────────────────────────────────── */
+    .certs-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
+    .cert-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+    }
+    .cert-title { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 4px; line-height: 1.4; }
+    .cert-org { font-size: 11px; font-weight: 400; color: var(--muted); }
+    .cert-status {
+      display: inline-block;
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+    .cert-status.active { background: rgba(79,126,247,0.12); color: var(--blue); }
+    .cert-status.progress { background: rgba(232,184,0,0.1); color: #E8B800; }
+
+    /* ── CONTACT STRIP ───────────────────────────────────────── */
+    .contact-strip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px 52px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr auto;
       gap: 40px;
       align-items: center;
     }
-    .about-text h2 {
-      font-size: 1.4rem; font-weight: 600;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
+    .contact-heading {
+      font-family: var(--serif);
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
     }
-    .about-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
-    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .stat-item {}
-    .stat-num {
+    .contact-sub { font-size: 0.9rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+    .contact-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+    .contact-link {
       font-family: var(--mono);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--amber);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .stat-label {
-      font-size: 0.8rem;
+      font-size: 12px; font-weight: 500;
       color: var(--muted);
-      font-family: var(--mono);
-      letter-spacing: 0.05em;
-    }
-
-    /* ─── FOOTER ─────────────────────────────────────────────── */
-    footer {
-      margin-top: 100px;
-      border-top: 1px solid var(--border);
-      padding: 32px 0;
-    }
-    footer .wrap {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .footer-left {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .footer-left span { color: var(--amber); }
-    .footer-links { display: flex; gap: 20px; }
-    .footer-links a {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
+      display: flex; align-items: center; gap: 8px;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--amber); }
+    .contact-link:hover { color: var(--blue); }
+    .contact-link svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-    /* ─── RESPONSIVE ─────────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .card-inner { grid-template-columns: 1fr; }
-      .card-inner.reverse { direction: ltr; }
-      .card-img { min-height: 200px; }
-      .card-content { padding: 24px; }
-      .about-strip { grid-template-columns: 1fr; padding: 28px; }
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      margin-top: 80px;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .footer-copy { font-size: 12px; color: var(--subtle); font-family: var(--mono); }
+    .footer-right { display: flex; gap: 24px; }
+    .footer-right a { font-size: 12px; color: var(--subtle); font-family: var(--mono); transition: color 0.2s; }
+    .footer-right a:hover { color: var(--blue); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+      .metric-item:nth-child(2) { border-right: none; }
+      .project-row { grid-template-columns: 1fr; }
+      .project-row.flip { direction: ltr; }
+      .proj-media { min-height: 200px; }
+      .proj-content { padding: 24px 28px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .certs-row { grid-template-columns: 1fr; }
+      .contact-strip { grid-template-columns: 1fr; padding: 32px; }
+      .contact-links { align-items: flex-start; }
       .nav-links { display: none; }
     }
-
+    @media (max-width: 540px) {
+      .metrics-bar { grid-template-columns: 1fr 1fr; }
+      .hero-name { font-size: 2.2rem; }
+    }
     @media (prefers-reduced-motion: reduce) {
-      .cursor { animation: none; opacity: 1; }
-      * { transition: none !important; animation: none !important; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="wrap">
-      <div class="nav-logo">hannah.moriones</div>
+<!-- ═══ NAV ═══════════════════════════════════════════════════ -->
+<nav>
+  <div class="wrap">
+    <div class="nav-inner">
+      <div class="nav-name">Hannah <span>Moriones</span></div>
       <div class="nav-links">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="https://www.linkedin.com/in/hannahrmori" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="https://drive.google.com/file/d/1METpiq35MvVsIS1r6bs1GbVL3vnoba7d/view?usp=sharing" target="_blank" rel="noopener">Resume ↗</a>
       </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <p class="hero-eyebrow">// Data Analytics Portfolio</p>
-      <h1>
-        Turning raw data<br />into <em>clear decisions</em><span class="cursor"></span>
-      </h1>
-      <p class="hero-desc">
-        Data analyst specialising in workforce analytics, global development,
-        and business intelligence. Building dashboards that don't just look good —
-        they answer the right questions.
-      </p>
-      <div class="hero-chips">
-        <span class="chip">Tableau</span>
-        <span class="chip">Power BI</span>
-        <span class="chip">Looker Studio</span>
-        <span class="chip">SQL</span>
-        <span class="chip">Python</span>
-        <span class="chip">World Bank Data</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- PULSE DIVIDER -->
-  <div class="wrap">
-    <div class="pulse-divider">
-      <div class="pulse-line"></div>
-      <span class="pulse-label">Featured Projects</span>
-      <div class="pulse-line-r"></div>
     </div>
   </div>
+</nav>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="wrap">
-      <div class="projects">
-
-        <!-- PROJECT 1 — TABLEAU -->
-        <article class="project-card">
-          <div class="card-inner">
-            <div class="card-img">
-              <img
-                src="assets/Tab1_Macro Executive View.PNG"
-                alt="Enterprise Workforce Risk Audit — Macro Executive View dashboard screenshot"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="card-img-placeholder" style="display:none; position:absolute; inset:0;">Dashboard Preview</div>
-            </div>
-            <div class="card-content">
-              <div class="card-top">
-                <p class="card-platform platform-tableau">// Tableau Public</p>
-                <h2 class="card-title">Enterprise Workforce Risk Audit</h2>
-                <p class="card-desc">
-                  An executive-level HR intelligence dashboard surfacing attrition risk,
-                  headcount distribution, and department-level workforce health metrics
-                  across the enterprise. Built for C-suite decision-making with drill-down
-                  filters and cross-sheet interactivity.
-                </p>
-                <div class="card-tags">
-                  <span class="tag">HR Analytics</span>
-                  <span class="tag">Attrition Risk</span>
-                  <span class="tag">Executive KPIs</span>
-                  <span class="tag">LOD Calculations</span>
-                  <span class="tag">Dashboard Actions</span>
-                </div>
-              </div>
-              <div class="card-links">
-                <a
-                  class="btn btn-primary"
-                  href="https://public.tableau.com/views/EnterpriseWorkforceRiskAudit/WorkforceRiskAudit"
-                  target="_blank" rel="noopener"
-                >
-                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.54 10.46-1.06 1.06-3-3V12H6V8.52l-3-3 1.06-1.06L7 7.4V4h1.5v3.4z"/></svg>
-                  View on Tableau Public
-                </a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- PROJECT 2 — TABLEAU (second screenshot) -->
-        <article class="project-card">
-          <div class="card-inner reverse">
-            <div class="card-img">
-              <img
-                src="assets/Tab 2_The Interactive Wealth vs. Emissions Tracker.PNG"
-                alt="Interactive Wealth vs Emissions Tracker — Tableau dashboard screenshot"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="card-img-placeholder" style="display:none; position:absolute; inset:0;">Dashboard Preview</div>
-            </div>
-            <div class="card-content">
-              <div class="card-top">
-                <p class="card-platform platform-tableau">// Tableau Public</p>
-                <h2 class="card-title">The Interactive Wealth vs. Emissions Tracker</h2>
-                <p class="card-desc">
-                  A dynamic scatter-plot explorer mapping GDP per capita against CO₂
-                  emissions across 200+ countries from 2000–2023. Reveals how economic
-                  growth and carbon output have decoupled in some regions while deepening
-                  in others — powered by World Bank open data.
-                </p>
-                <div class="card-tags">
-                  <span class="tag">World Bank Data</span>
-                  <span class="tag">Scatter Plot</span>
-                  <span class="tag">Geo Mapping</span>
-                  <span class="tag">Time Series</span>
-                  <span class="tag">Sustainability</span>
-                </div>
-              </div>
-              <div class="card-links">
-                <a
-                  class="btn btn-primary"
-                  href="https://public.tableau.com/views/EnterpriseWorkforceRiskAudit/WorkforceRiskAudit"
-                  target="_blank" rel="noopener"
-                >
-                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.54 10.46-1.06 1.06-3-3V12H6V8.52l-3-3 1.06-1.06L7 7.4V4h1.5v3.4z"/></svg>
-                  View on Tableau Public
-                </a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- PROJECT 3 — LOOKER STUDIO -->
-        <article class="project-card">
-          <div class="card-inner">
-            <div class="card-img" style="background:#0D1117; display:flex; align-items:stretch;">
-              <iframe
-                src="https://lookerstudio.google.com/embed/reporting/403029a0-89f9-4d26-aa3c-7df836fbb089/page/XK2zF"
-                style="width:100%; height:100%; min-height:320px; border:none; pointer-events:none;"
-                allowfullscreen
-                title="Looker Studio dashboard preview"
-                loading="lazy"
-              ></iframe>
-            </div>
-            <div class="card-content">
-              <div class="card-top">
-                <p class="card-platform platform-looker">// Looker Studio</p>
-                <h2 class="card-title">Global Development Analytics</h2>
-                <p class="card-desc">
-                  A live-connected Looker Studio report built on World Bank indicators,
-                  tracking economic and health trends across income groups. Features
-                  real-time filter controls, scorecards, and geographic breakdowns —
-                  shareable via public link with no login required.
-                </p>
-                <div class="card-tags">
-                  <span class="tag">Looker Studio</span>
-                  <span class="tag">Live Data</span>
-                  <span class="tag">Scorecards</span>
-                  <span class="tag">Geo Charts</span>
-                  <span class="tag">Date Controls</span>
-                </div>
-              </div>
-              <div class="card-links">
-                <a
-                  class="btn btn-primary"
-                  href="https://lookerstudio.google.com/embed/reporting/403029a0-89f9-4d26-aa3c-7df836fbb089/page/XK2zF"
-                  target="_blank" rel="noopener"
-                >
-                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.54 10.46-1.06 1.06-3-3V12H6V8.52l-3-3 1.06-1.06L7 7.4V4h1.5v3.4z"/></svg>
-                  Open Looker Report
-                </a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- PROJECT 4 — POWER BI -->
-        <article class="project-card">
-          <div class="card-inner reverse">
-            <div class="card-img" style="display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #1C2330 0%, #0D1117 100%);">
-              <div style="text-align:center; padding:32px;">
-                <svg width="64" height="64" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto 16px;" aria-hidden="true">
-                  <rect width="40" height="40" rx="8" fill="#F2C811" opacity="0.15"/>
-                  <rect x="8" y="20" width="5" height="14" rx="1.5" fill="#F2C811"/>
-                  <rect x="16" y="14" width="5" height="20" rx="1.5" fill="#F2C811" opacity="0.75"/>
-                  <rect x="24" y="8" width="5" height="26" rx="1.5" fill="#F2C811" opacity="0.5"/>
-                </svg>
-                <p style="font-family:'Space Mono',monospace; font-size:11px; color:#7D8590; letter-spacing:0.08em; text-transform:uppercase;">Power BI Report</p>
-                <p style="font-family:'Space Mono',monospace; font-size:10px; color:#3A4251; margin-top:6px; letter-spacing:0.05em;">Access via link →</p>
-              </div>
-            </div>
-            <div class="card-content">
-              <div class="card-top">
-                <p class="card-platform platform-powerbi">// Power BI</p>
-                <h2 class="card-title">Business Intelligence Dashboard</h2>
-                <p class="card-desc">
-                  A Power BI report demonstrating data modelling with a star schema,
-                  custom DAX measures including YoY comparisons and running totals,
-                  and interactive slicers across dimensions. Saved and shared via Google Drive.
-                </p>
-                <div class="card-tags">
-                  <span class="tag">Power BI</span>
-                  <span class="tag">DAX Measures</span>
-                  <span class="tag">Data Modelling</span>
-                  <span class="tag">Star Schema</span>
-                  <span class="tag">KPI Cards</span>
-                </div>
-              </div>
-              <div class="card-links">
-                <a
-                  class="btn btn-primary"
-                  href="https://drive.google.com/file/d/1METpiq35MvVsIS1r6bs1GbVL3vnoba7d/view?usp=sharing"
-                  target="_blank" rel="noopener"
-                >
-                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.54 10.46-1.06 1.06-3-3V12H6V8.52l-3-3 1.06-1.06L7 7.4V4h1.5v3.4z"/></svg>
-                  View on Google Drive
-                </a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-      </div><!-- /projects -->
-    </div>
-  </section>
-
-  <!-- PULSE DIVIDER -->
+<!-- ═══ HERO ═══════════════════════════════════════════════════ -->
+<section class="hero">
   <div class="wrap">
-    <div class="pulse-divider" id="about">
-      <div class="pulse-line"></div>
-      <span class="pulse-label">About</span>
-      <div class="pulse-line-r"></div>
+    <p class="hero-label">Senior Business Partner · BI & Data Analytics</p>
+    <h1 class="hero-name">Hannah Ruth Moriones</h1>
+    <p class="hero-title">Business Intelligence &amp; Data Analytics Leader &nbsp;·&nbsp; Philippines</p>
+    <p class="hero-summary">
+      Senior leader who turns complex data environments into business advantage for global enterprises across energy, HR tech, and professional services. Delivered end-to-end BI transformations — from ETL/ELT pipeline architecture and data warehouse design to Power BI semantic modelling and self-service analytics at scale.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-solid" href="#portfolio">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2 2h5v2H4v8h8v-3h2v5H2V2z"/><path d="M9 2h5v5h-2V4.414L7.707 8.707 6.293 7.293 10.586 3H9V2z"/></svg>
+        View Portfolio
+      </a>
+      <a class="btn-ghost" href="https://www.linkedin.com/in/hannahmoriones" target="_blank" rel="noopener">
+        LinkedIn Profile ↗
+      </a>
+      <a class="btn-ghost" href="mailto:hannahr.moriones@gmail.com">
+        hannahr.moriones@gmail.com
+      </a>
+    </div>
+
+    <!-- SIGNATURE ELEMENT: real impact KPIs from resume -->
+    <div class="metrics-bar" role="list" aria-label="Career impact metrics">
+      <div class="metric-item" role="listitem">
+        <div class="metric-num">75<span>%</span></div>
+        <div class="metric-label">Reduction in manual processing — Dayforce Power BI transformation</div>
+      </div>
+      <div class="metric-item" role="listitem">
+        <div class="metric-num">12<span>+</span></div>
+        <div class="metric-label">Analysts led across global BI and operations teams</div>
+      </div>
+      <div class="metric-item" role="listitem">
+        <div class="metric-num">13<span>+</span></div>
+        <div class="metric-label">Years in data analytics across energy, HR tech, and professional services</div>
+      </div>
+      <div class="metric-item" role="listitem">
+        <div class="metric-num">5<span>×</span></div>
+        <div class="metric-label">Global enterprises served — BHP, Schneider Electric, Dayforce &amp; more</div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- ABOUT -->
-  <section>
-    <div class="wrap">
-      <div class="about-strip">
-        <div class="about-text">
-          <h2>Hi, I'm Hannah.</h2>
-          <p>
-            I'm a data analyst passionate about turning complex datasets into clear,
-            actionable insights. I work across the full analytics stack — from data
-            cleaning and modelling to interactive dashboard design — using Tableau,
-            Power BI, and Looker Studio.
-          </p>
-          <br />
-          <p>
-            My work spans HR analytics, global development data, and business
-            intelligence. I believe great analysis isn't just about the numbers —
-            it's about asking the right question first.
-          </p>
+<!-- ═══ PORTFOLIO ═══════════════════════════════════════════════ -->
+<section class="section" id="portfolio">
+  <div class="wrap">
+    <div class="section-header">
+      <p class="eyebrow">Live Dashboards</p>
+      <h2 class="section-title">Portfolio</h2>
+      <p class="section-desc">Three production-grade dashboards across Tableau, Power BI, and Looker Studio — built to executive brief, not tutorial template.</p>
+    </div>
+
+    <div class="projects">
+
+      <!-- PROJECT 1: TABLEAU — Enterprise Workforce Risk Audit -->
+      <article class="project-row">
+        <div class="proj-media">
+          <img
+            src="assets/Tab1_Macro Executive View.PNG"
+            alt="Enterprise Workforce Risk Audit — Macro Executive View"
+            loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <div class="proj-media-placeholder" style="display:none; background: #0D1520;">
+            <div class="proj-media-icon" style="background:rgba(0,148,201,0.1);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0094C9" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            </div>
+            <span class="proj-media-label">Tableau Public</span>
+          </div>
         </div>
-        <div class="about-stats">
-          <div class="stat-item">
-            <div class="stat-num">3</div>
-            <div class="stat-label">BI Platforms</div>
+        <div class="proj-content">
+          <div>
+            <p class="proj-platform p-tableau">// Tableau Public</p>
+            <h3 class="proj-title">Enterprise Workforce Risk Audit</h3>
+            <p class="proj-desc">Executive-level HR intelligence dashboard surfacing attrition risk, headcount distribution, and department-level workforce health across the enterprise. Built for C-suite decision-making with LOD expressions, cross-sheet actions, and a parameter-driven reset architecture to resolve Tableau Public caching limitations at scale.</p>
+            <div class="proj-highlights">
+              <p class="proj-highlight">Multi-layered LOD expressions mapping supply metrics against organisational risk</p>
+              <p class="proj-highlight">Worksheet-to-worksheet dashboard actions for drill-through interactivity</p>
+              <p class="proj-highlight">Custom parameter-driven architecture overriding native web-filtering bugs</p>
+            </div>
+            <div class="proj-tags">
+              <span class="tag">Tableau Public</span>
+              <span class="tag">LOD Expressions</span>
+              <span class="tag">HR Analytics</span>
+              <span class="tag">Dashboard Actions</span>
+              <span class="tag">Attrition Risk</span>
+            </div>
           </div>
-          <div class="stat-item">
-            <div class="stat-num">4+</div>
-            <div class="stat-label">Live Dashboards</div>
+          <a class="proj-link" href="https://public.tableau.com/views/EnterpriseWorkforceRiskAudit/WorkforceRiskAudit" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M9 2h5v5h-2V4.414L7.707 8.707 6.293 7.293 10.586 3H9V2zM2 2h5v2H4v8h8v-3h2v5H2V2z"/></svg>
+            View on Tableau Public
+          </a>
+        </div>
+      </article>
+
+      <!-- PROJECT 2: TABLEAU — Wealth vs Emissions -->
+      <article class="project-row flip">
+        <div class="proj-media">
+          <img
+            src="assets/Tab 2_The Interactive Wealth vs. Emissions Tracker.PNG"
+            alt="Interactive Wealth vs. Emissions Tracker — Tableau"
+            loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <div class="proj-media-placeholder" style="display:none; background:#0A1420;">
+            <div class="proj-media-icon" style="background:rgba(0,148,201,0.1);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0094C9" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+            </div>
+            <span class="proj-media-label">Tableau Public</span>
           </div>
-          <div class="stat-item">
-            <div class="stat-num">217</div>
-            <div class="stat-label">Countries Analysed</div>
+        </div>
+        <div class="proj-content">
+          <div>
+            <p class="proj-platform p-tableau">// Tableau Public</p>
+            <h3 class="proj-title">Global Logistics &amp; Supply Chain Optimisation</h3>
+            <p class="proj-desc">An exploratory data visualisation framework built to monitor inventory turnover rates and identify cross-border transit exceptions for global operations — with minimalist UX design engineered to reduce cognitive load for executive stakeholders.</p>
+            <div class="proj-highlights">
+              <p class="proj-highlight">Advanced LOD expressions mapping supply metrics to departmental risks</p>
+              <p class="proj-highlight">Cognitive-load reduction via minimalist layout and custom UX navigation tools</p>
+              <p class="proj-highlight">Parameter-driven reset architecture resolving Tableau Public caching bugs</p>
+            </div>
+            <div class="proj-tags">
+              <span class="tag">Tableau Public</span>
+              <span class="tag">Supply Chain</span>
+              <span class="tag">LOD Expressions</span>
+              <span class="tag">UX Design</span>
+              <span class="tag">Excel</span>
+            </div>
           </div>
-          <div class="stat-item">
-            <div class="stat-num">50+</div>
-            <div class="stat-label">Years of Data</div>
+          <a class="proj-link" href="https://public.tableau.com/views/EnterpriseWorkforceRiskAudit/WorkforceRiskAudit" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M9 2h5v5h-2V4.414L7.707 8.707 6.293 7.293 10.586 3H9V2zM2 2h5v2H4v8h8v-3h2v5H2V2z"/></svg>
+            View on Tableau Public
+          </a>
+        </div>
+      </article>
+
+      <!-- PROJECT 3: LOOKER STUDIO — Marketing Campaign ROI -->
+      <article class="project-row">
+        <div class="proj-media" style="background:#0B1220;">
+          <iframe
+            src="https://lookerstudio.google.com/embed/reporting/403029a0-89f9-4d26-aa3c-7df836fbb089/page/XK2zF"
+            style="width:100%;height:100%;min-height:280px;border:none;pointer-events:none;"
+            allowfullscreen
+            title="Marketing Campaign ROI & Acquisition Engine — Looker Studio"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="proj-content">
+          <div>
+            <p class="proj-platform p-looker">// Looker Studio · Google BigQuery</p>
+            <h3 class="proj-title">Marketing Campaign ROI &amp; Acquisition Engine</h3>
+            <p class="proj-desc">Executive-level performance engine aggregating multi-channel advertising spend and web traffic for real-time scale evaluation. Engineered a centralised BigQuery pipeline with custom SQL ingestion, eliminating platform reporting silos across channels.</p>
+            <div class="proj-highlights">
+              <p class="proj-highlight">Dual-axis scatter plot mapping ad spend against true conversion rates by channel</p>
+              <p class="proj-highlight">CASE statement logic compressing 50+ age records into 4 strategic behavioral brackets</p>
+              <p class="proj-highlight">Monochromatic heatmap palette with integrated multi-column executive narrative box</p>
+            </div>
+            <div class="proj-tags">
+              <span class="tag">Looker Studio</span>
+              <span class="tag">BigQuery</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Marketing Analytics</span>
+              <span class="tag">Conversion Tracking</span>
+            </div>
           </div>
+          <a class="proj-link" href="https://lookerstudio.google.com/embed/reporting/403029a0-89f9-4d26-aa3c-7df836fbb089/page/XK2zF" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M9 2h5v5h-2V4.414L7.707 8.707 6.293 7.293 10.586 3H9V2zM2 2h5v2H4v8h8v-3h2v5H2V2z"/></svg>
+            Open Looker Studio Report
+          </a>
+        </div>
+      </article>
+
+      <!-- PROJECT 4: POWER BI — Global ESG Insights Hub -->
+      <article class="project-row flip">
+        <div class="proj-media" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#111820 0%,#0B0F19 100%);">
+          <div style="text-align:center;padding:32px;">
+            <svg width="56" height="56" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto 16px;" aria-hidden="true">
+              <rect width="48" height="48" rx="10" fill="rgba(232,184,0,0.08)"/>
+              <rect x="10" y="24" width="6" height="16" rx="2" fill="#E8B800" opacity="0.9"/>
+              <rect x="20" y="16" width="6" height="24" rx="2" fill="#E8B800" opacity="0.65"/>
+              <rect x="30" y="8"  width="6" height="32" rx="2" fill="#E8B800" opacity="0.4"/>
+            </svg>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#374461;letter-spacing:0.1em;text-transform:uppercase;">Power BI Report</p>
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#263450;margin-top:4px;">View via Google Drive →</p>
+          </div>
+        </div>
+        <div class="proj-content">
+          <div>
+            <p class="proj-platform p-powerbi">// Power BI</p>
+            <h3 class="proj-title">Global ESG Insights Hub &amp; Regional Acceleration Model</h3>
+            <p class="proj-desc">An interactive data visualisation application engineered to evaluate macroeconomic trends and track international environmental compliance metrics. Features an animated scatter plot engine correlating industrial GDP output against per-capita carbon emissions over a 20-year horizon.</p>
+            <div class="proj-highlights">
+              <p class="proj-highlight">Animated play-axis engine tracking GDP vs. per-capita carbon output over 20 years</p>
+              <p class="proj-highlight">Premium dark-mode executive UI with custom high-contrast typography</p>
+              <p class="proj-highlight">Multi-table granularity audit resolving schema conflicts and rendering faults</p>
+            </div>
+            <div class="proj-tags">
+              <span class="tag">Power BI</span>
+              <span class="tag">DAX</span>
+              <span class="tag">ESG Analytics</span>
+              <span class="tag">Animated Scatter</span>
+              <span class="tag">Star Schema</span>
+            </div>
+          </div>
+          <a class="proj-link" href="https://drive.google.com/file/d/1METpiq35MvVsIS1r6bs1GbVL3vnoba7d/view?usp=sharing" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M9 2h5v5h-2V4.414L7.707 8.707 6.293 7.293 10.586 3H9V2zM2 2h5v2H4v8h8v-3h2v5H2V2z"/></svg>
+            View on Google Drive
+          </a>
+        </div>
+      </article>
+
+    </div><!-- /projects -->
+  </div>
+</section>
+
+<!-- ═══ EXPERIENCE ══════════════════════════════════════════════ -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-header">
+      <p class="eyebrow">Career History</p>
+      <h2 class="section-title">Experience</h2>
+      <p class="section-desc">13+ years delivering BI infrastructure and data strategy across global enterprises in energy, HR tech, and professional services.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-meta">Mar 2025 – Mar 2026</p>
+        <p class="tl-role">Senior Business Partner, Global Customer Operations</p>
+        <p class="tl-company">Dayforce</p>
+        <ul class="tl-bullets">
+          <li class="tl-bullet">Engineered a <strong>75% reduction in manual processing</strong> for 2,000+ employees by architecting a Power BI reporting ecosystem integrating Salesforce and Dayforce into a unified semantic model.</li>
+          <li class="tl-bullet">Drove a <strong>15% productivity increase</strong> across a team of 12 analysts by redesigning capacity planning workflows with DAX-driven KPI models and automated refresh pipelines.</li>
+          <li class="tl-bullet">Eliminated a <strong>10% defect rate</strong> in vendor oversight via high-visibility dashboards with Power Query cleansing routines and row-level security.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-meta">Oct 2024 – Mar 2025 &nbsp;·&nbsp; Fixed Term</p>
+        <p class="tl-role">Operations and Administration Manager</p>
+        <p class="tl-company">Be One Solutions</p>
+        <ul class="tl-bullets">
+          <li class="tl-bullet">Designed and maintained an executive reporting dashboard consolidating financial, operational, and contract data — enabling real-time COO decision-making across active project portfolios.</li>
+          <li class="tl-bullet">Zero scope creep incidents maintained across full project lifecycles as primary PM-customer liaison.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-meta">Aug 2019 – Oct 2024</p>
+        <p class="tl-role">Senior Business Analyst, Global Strategy &amp; Solutions Architecture</p>
+        <p class="tl-company">Schneider Electric</p>
+        <ul class="tl-bullets">
+          <li class="tl-bullet">Accelerated MEA &amp; Levant Mining &amp; Metals revenue with a <strong>3–5% market share increase</strong> by translating regulatory and customer intelligence into investment cases.</li>
+          <li class="tl-bullet">Engineered an Alteryx ETL/ELT pipeline extracting Salesforce CRM data into Tableau, delivering a <strong>7–10% improvement in lead conversion</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-meta">Jan 2019 – Aug 2019</p>
+        <p class="tl-role">Principal Analyst, Global Business Services – Inclusion, Diversity &amp; Culture</p>
+        <p class="tl-company">BHP</p>
+        <ul class="tl-bullets">
+          <li class="tl-bullet">Directed 6 analysts to architect a centralised SAP data warehouse, reducing report turnaround from days to hours across global business units.</li>
+          <li class="tl-bullet">Drove a <strong>5–8% increase in employee sentiment scores</strong> via advanced TIBCO Spotfire visualisations surfacing behavioural trends to executive stakeholders.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-meta">Dec 2017 – Jan 2019</p>
+        <p class="tl-role">Senior Merchant Data Analyst, Applications &amp; Data Analytics</p>
+        <p class="tl-company">Stefanini North America &amp; APAC</p>
+        <ul class="tl-bullets">
+          <li class="tl-bullet">Managed a team of 12 analysts maintaining zero audit failures across 500+ high-value accounts.</li>
+          <li class="tl-bullet">Re-engineered regional data warehouse — restructuring SQL scripts and rebuilding star schema table design with automated ETL processes.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <p class="tl-meta">2012 – 2017</p>
+        <p class="tl-role">HRIS Analyst → Senior Market Analyst</p>
+        <p class="tl-company">Emerson Electric Asia (ROHQ) &amp; TTEC</p>
+        <ul class="tl-bullets">
+          <li class="tl-bullet">Progressed through global operations and sales analytics — built Oracle CRM reporting infrastructure, managed lead lifecycle analytics for North &amp; Latin America, and delivered executive dashboards in Tableau, SQL, and Excel.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILLS ══════════════════════════════════════════════════ -->
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-header">
+      <p class="eyebrow">Technical Competencies</p>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <p class="skill-group-title">BI &amp; Visualisation</p>
+        <div class="skill-pills">
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">DAX</span>
+          <span class="skill-pill">Power Query</span>
+          <span class="skill-pill">Power BI Service</span>
+          <span class="skill-pill">Tableau</span>
+          <span class="skill-pill">TIBCO Spotfire</span>
+          <span class="skill-pill">Looker Studio</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Data &amp; ETL</p>
+        <div class="skill-pills">
+          <span class="skill-pill">SQL · T-SQL</span>
+          <span class="skill-pill">Stored Procedures</span>
+          <span class="skill-pill">Alteryx</span>
+          <span class="skill-pill">SAP Data Extraction</span>
+          <span class="skill-pill">ETL/ELT Pipelines</span>
+          <span class="skill-pill">Star Schema Design</span>
+          <span class="skill-pill">Google BigQuery</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">CRM &amp; Platforms</p>
+        <div class="skill-pills">
+          <span class="skill-pill">Salesforce</span>
+          <span class="skill-pill">Oracle CRM</span>
+          <span class="skill-pill">Oracle HRIS</span>
+          <span class="skill-pill">Taleo</span>
+          <span class="skill-pill">Jira</span>
+          <span class="skill-pill">Confluence</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Analytics &amp; Reporting</p>
+        <div class="skill-pills">
+          <span class="skill-pill">Advanced Excel</span>
+          <span class="skill-pill">VBA</span>
+          <span class="skill-pill">Google Analytics</span>
+          <span class="skill-pill">Cognos</span>
+          <span class="skill-pill">Workforce Analytics</span>
+          <span class="skill-pill">Data Governance</span>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="wrap">
-      <p class="footer-left">
-        Built by <span>Hannah Moriones</span> · Data Analytics Portfolio
-      </p>
-      <div class="footer-links">
-        <a href="https://public.tableau.com/app/profile/hannah.ruth.moriones2495" target="_blank" rel="noopener">Tableau Public ↗</a>
-        <a href="https://www.linkedin.com/in/hannahrmori" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <!-- Certifications -->
+    <div class="certs-row">
+      <div class="cert-card">
+        <p class="cert-title">Microsoft PL-300 Power BI Data Analyst Associate</p>
+        <p class="cert-org">Microsoft</p>
+        <span class="cert-status progress">In Progress</span>
+      </div>
+      <div class="cert-card">
+        <p class="cert-title">Google Analytics, Ads &amp; Conversion Certifications</p>
+        <p class="cert-org">Google</p>
+        <span class="cert-status active">May 2026 – May 2027</span>
+      </div>
+      <div class="cert-card">
+        <p class="cert-title">Diploma in Project Management</p>
+        <p class="cert-org">De La Salle – College of Saint Benilde</p>
+        <span class="cert-status progress">Expected Mar 2027</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ══════════════════════════════════════════════════ -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-strip">
+      <div>
+        <h2 class="contact-heading">Let's work together.</h2>
+        <p class="contact-sub">
+          Open to senior BI, analytics leadership, and data strategy roles. Based in Gen. Trias, Cavite, Philippines — available for remote and hybrid engagements globally.
+        </p>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:hannahr.moriones@gmail.com">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/></svg>
+          hannahr.moriones@gmail.com
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/hannahmoriones" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+          linkedin.com/in/hannahmoriones
+        </a>
+        <a class="contact-link" href="https://public.tableau.com/app/profile/hannah.ruth.moriones2495" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M7 2h2v3H7V2zm0 9h2v3H7v-3zM2 7h3v2H2V7zm9 0h3v2h-3V7zM3.5 3.5h2v2h-2v-2zm7 0h2v2h-2v-2zm-7 7h2v2h-2v-2zm7 0h2v2h-2v-2z"/></svg>
+          Tableau Public Profile
+        </a>
+        <a class="contact-link btn-solid" style="margin-top:8px;font-family:var(--mono);font-size:12px;" href="https://drive.google.com/file/d/1METpiq35MvVsIS1r6bs1GbVL3vnoba7d/view?usp=sharing" target="_blank" rel="noopener">
+          Download Resume ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 Hannah Ruth Moriones · hannahrmori.github.io/data-portfolio</p>
+      <div class="footer-right">
+        <a href="https://public.tableau.com/app/profile/hannah.ruth.moriones2495" target="_blank" rel="noopener">Tableau ↗</a>
+        <a href="https://www.linkedin.com/in/hannahmoriones" target="_blank" rel="noopener">LinkedIn ↗</a>
         <a href="https://github.com/hannahrmori" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:hannahr.moriones@gmail.com">Email ↗</a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
 </body>
 </html>
