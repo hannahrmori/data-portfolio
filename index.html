@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Analytics Portfolio</title>
+    <title>Hannah Ruth Moriones | Data Analytics Portfolio</title>
     <style>
         :root {
             --primary: #38bdf8;
@@ -18,9 +18,17 @@
         
         header { background-color: #0f172a; color: var(--heading); padding: 50px 20px; text-align: center; border-bottom: 1px solid var(--border); }
         header h1 { margin: 0; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.05em; color: var(--heading); }
-        header p { margin: 10px 0 0; opacity: 0.8; font-size: 1.1rem; }
+        header h3 { margin: 10px 0; font-size: 1.2rem; color: var(--primary); font-weight: 500; }
+        header p { max-width: 800px; margin: 15px auto; opacity: 0.9; font-size: 1rem; color: var(--text); }
         
-        nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; background: #090d16; padding: 14px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
+        .contact-info { font-size: 0.9rem; color: #94a3b8; margin: 15px 0; }
+        .contact-info span { margin: 0 10px; }
+        
+        .profile-actions { margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-profile { display: inline-flex; align-items: center; background-color: #1e293b; color: var(--heading); padding: 10px 20px; font-weight: 650; font-size: 0.9rem; text-decoration: none; border-radius: 8px; transition: background-color 0.2s, transform 0.1s; border: 1px solid #334155; }
+        .btn-profile:hover { background-color: #334155; color: white; transform: translateY(-1px); }
+        
+        nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; background: #090d16; padding: 14px; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
         nav a { color: #94a3b8; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
         nav a:hover { color: var(--primary); }
         
@@ -30,6 +38,7 @@
         
         .project-tag { display: inline-block; background: rgba(56, 189, 248, 0.1); color: var(--primary); padding: 4px 12px; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 12px; border: 1px solid rgba(56, 189, 248, 0.2); }
         .project-tag.powerbi { background: rgba(245, 158, 11, 0.1); color: #fbbf24; border-color: rgba(245, 158, 11, 0.2); } 
+        .project-tag.python { background: rgba(16, 185, 129, 0.1); color: #34d399; border-color: rgba(16, 185, 129, 0.2); } 
         
         h2 { margin: 0 0 10px 0; font-size: 1.75rem; color: var(--heading); letter-spacing: -0.03em; }
         p { color: var(--text); }
@@ -51,15 +60,31 @@
 <body>
 
     <header>
-        <h1>Data Analytics Portfolio</h1>
-        <p>Interactive Business Intelligence Solutions & Executive Dashboards</p>
+        <h1>Hannah Ruth Moriones</h1>
+        <h3>Senior BI & Analytics Consultant | Reporting, Automation & Business Insight</h3>
+        <div class="contact-info">
+            <span>📍 City of Gen. Trias, Cavite, Philippines</span> | 
+            <span>📧 hannahr.moriones@gmail.com</span> | 
+            <span>📞 +63 927 644 6464</span>
+        </div>
+        <p>Analytics professional who mines large data sets, builds ETL pipelines and automates manual work, translating insights into tangible business results. Strong in SQL, Alteryx, and Tableau, with expertise in forecasting, conversion, and churn analysis.</p>
+        
+        <div class="profile-actions">
+            <a href="https://www.linkedin.com/in/hannahmoriones/" target="_blank" class="btn-profile">
+                <span>🔗</span> LinkedIn Profile
+            </a>
+            <a href="https://drive.google.com/file/d/1hnvderKUIk19l4HKl6OeVYHFsT8hgTQV/view?usp=drive_link" target="_blank" class="btn-profile">
+                <span>📄</span> View Resume
+            </a>
+        </div>
     </header>
 
     <nav>
         <a href="#looker">Looker Studio</a>
         <a href="#tableau">Tableau</a>
-        <a href="#powerbi-esg">ESG Insights Hub</a>
-        <a href="#powerbi-perf">Performance & Profitability</a>
+        <a href="#powerbi-esg">ESG Insights</a>
+        <a href="#powerbi-perf">Profitability</a>
+        <a href="#python-retail">Retail Forecast</a>
     </nav>
 
     <div class="container">
@@ -126,6 +151,24 @@
             <div class="download-container">
                 <a href="https://drive.google.com/file/d/1kXPZmz5zF1Iy5Q6L6LWdHQ1t8q9OFLDo/view?usp=sharing" target="_blank" class="btn-download">
                     <span>📥</span> Download Performance & Profitability .PBIX File
+                </a>
+            </div>
+        </div>
+
+        <!-- PROJECT 5: PYTHON (RETAIL FORECAST PROJECT) -->
+        <div class="project-card" id="python-retail">
+            <span class="project-tag python">Python / Machine Learning</span>
+            <h2>Retail Demand Forecasting Model</h2>
+            <div class="meta-info"><strong>Tools:</strong> Python, Pandas, Scikit-Learn, Time-Series Modeling</div>
+            <p>A machine learning-driven analytics pipeline built to predict future retail sales trends, optimize inventory management, and evaluate temporal purchasing behaviors.</p>
+            <ul>
+                <li><strong>Data Pipeline & Feature Engineering:</strong> Cleaned, transformed, and structured historical transactional data into rich temporal features to capture seasonality and cyclical buying trends.</li>
+                <li><strong>Predictive Modeling:</strong> Implemented machine learning regression algorithms to generate accurate multi-period sales forecasts with robust error evaluation metrics.</li>
+            </ul>
+
+            <div class="download-container">
+                <a href="https://github.com/hannahrmori/RetailForecastProject" target="_blank" class="btn-download">
+                    <span>💻</span> View Source Code on GitHub
                 </a>
             </div>
         </div>
